@@ -7,6 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\core\core.csproj" />
+      <ProjectReference Include="..\dto\dto.csproj" />
       <ProjectReference Include="..\Messaging.Core\Messaging.Core.csproj" />
     </ItemGroup>
 
@@ -37,6 +39,9 @@
       </PackageReference>
       <PackageReference Include="Microsoft.Extensions.Logging.Console">
         <Version>6.0.0-rc.2.21480.5</Version>
+      </PackageReference>
+      <PackageReference Include="Newtonsoft.Json">
+        <Version>13.0.1</Version>
       </PackageReference>
       <PackageReference Include="RabbitMQ.Client">
         <Version>5.2.0</Version>

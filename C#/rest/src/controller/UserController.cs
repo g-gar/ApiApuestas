@@ -1,5 +1,5 @@
-﻿using ApiApuestas.model;
-using core;
+﻿using core;
+using dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiApuestas.controller{
@@ -7,20 +7,31 @@ namespace ApiApuestas.controller{
     [Route("/api/user/")]
     public class UserController : ControllerBase {
         
-        private readonly BetFacade _betFacade;
+        private readonly CommandFacade _commandFacade;
 
-        public UserController(BetFacade betFacade)
+        public UserController(CommandFacade commandFacade)
         {
-            _betFacade = betFacade;
+            _commandFacade = commandFacade;
         }
 
         [HttpPost]
         [Route("/")]
-        public IActionResult create([FromBody] CreateUserDto requestDto)
+        public IActionResult create(CreateUserDto dto)
         {
             IActionResult result = Ok();
 
-            _betFacade.register(requestDto.username, requestDto.dni, requestDto.password);
+            _commandFacade.register(dto.Username, dto.Dni, dto.Password);
+
+            return result;
+        }
+
+        [HttpPost]
+        [Route("/auth/")]
+        public IActionResult authenticate(AuthenticateUserDto dto)
+        {
+            IActionResult result = Ok();
+
+            bool valid = _commandFacade.authenticate(dto.Username, dto.Password);
 
             return result;
         }

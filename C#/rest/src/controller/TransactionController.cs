@@ -1,5 +1,5 @@
-﻿using ApiApuestas.model;
-using core;
+﻿using core;
+using dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiApuestas.controller{
@@ -7,20 +7,20 @@ namespace ApiApuestas.controller{
     [Route("/api/transaccion/")]
     public class TransactionController : ControllerBase {
 
-        private readonly BetFacade _betFacade;
+        private readonly CommandFacade _commandFacade;
 
-        public TransactionController(BetFacade betFacade)
+        public TransactionController(CommandFacade commandFacade)
         {
-            _betFacade = betFacade;
+            _commandFacade = commandFacade;
         }
         
         [HttpPost]
         [Route("/")]
-        public IActionResult create([FromBody] CreateTransactionDto requestDto)
+        public IActionResult create(CreateTransactionDto dto)
         {
             IActionResult result = Ok();
 
-            int transactionId = _betFacade.createTransaction(requestDto.userId, requestDto.type, requestDto.amount);
+            int transactionId = _commandFacade.createTransaction(dto.UserId, dto.Type, dto.Amount);
 
             return result;
         }

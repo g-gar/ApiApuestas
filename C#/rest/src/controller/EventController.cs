@@ -1,6 +1,6 @@
 ﻿using System.Data;
-using ApiApuestas.model;
 using core;
+using dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiApuestas.controller{
@@ -9,53 +9,53 @@ namespace ApiApuestas.controller{
     [Route("/api/evento/{event_id}/")]
     public class EventController : ControllerBase{
 
-        private readonly BetFacade _betFacade;
+        private readonly CommandFacade _commandFacade;
 
-        public EventController(BetFacade betFacade)
+        public EventController(CommandFacade commandFacade)
         {
-            _betFacade = betFacade;
+            _commandFacade = commandFacade;
         }
 
         [HttpPost]
         [Route("/asignar_participante/")]
-        public IActionResult addPlayer([FromRoute] int eventId, [FromBody] AddPlayerDto requestDto)
+        public IActionResult addPlayer(AddPlayerDto dto)
         {
             IActionResult result = Ok();
             
-            _betFacade.addPlayer(eventId, requestDto.quota, requestDto.position);
+            _commandFacade.addPlayer(dto.EventId, dto.Quota, dto.Position);
             
             return result;
         }
 
         [HttpPost]
         [Route("~/api/evento/")]
-        public IActionResult createEvent([FromBody] CreateEventDto requestDto)
+        public IActionResult createEvent(CreateEventDto dto)
         {
             IActionResult result = Ok();
 
-            _betFacade.createEvent(requestDto.type, requestDto.description, requestDto.date);
+            _commandFacade.createEvent(dto.Type, dto.Description, dto.Date);
             
             return result;
         } 
 
         [HttpPost]
         [Route("/terminar/")]
-        public IActionResult terminateEvent([FromRoute] int eventId, [FromBody] int playerId)
+        public IActionResult terminateEvent(TerminateEventDto dto)
         {
             IActionResult result = Ok();
 
-            _betFacade.terminateEvent(eventId, playerId);
+            _commandFacade.terminateEvent(dto.EventId, dto.WinnerId);
             
             return result;
         }
 
         [HttpPost]
         [Route("/apostar/")]
-        public IActionResult bet([FromRoute] int eventId, [FromBody] BetDto betDto)
+        public IActionResult bet(CreateBetDto dto)
         {
             IActionResult result = Ok();
 
-            _betFacade.bet(eventId, betDto.playerId, betDto.amount, betDto.winner);
+            _commandFacade.bet(dto.EventId, dto.UserId, dto.Amount, dto.Winner);
             
             return result;
         }
