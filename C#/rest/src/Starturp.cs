@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
@@ -21,7 +22,7 @@ namespace ApiApuestas {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // TODO: finish service configuration
+            services.ConfigureCoreDependencyInjection();
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "RecursionCluster", Version = "v1"}); });
         }

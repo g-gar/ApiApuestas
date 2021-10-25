@@ -10,6 +10,7 @@
       <ProjectReference Include="..\core\core.csproj" />
       <ProjectReference Include="..\dto\dto.csproj" />
       <ProjectReference Include="..\Messaging.Core\Messaging.Core.csproj" />
+      <ProjectReference Include="..\repository\repository.csproj" />
     </ItemGroup>
 
     <ItemGroup>

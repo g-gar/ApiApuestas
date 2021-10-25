@@ -1,29 +1,23 @@
-﻿using core;
+﻿using System.ComponentModel;
+using core;
 using dto;
+using framework;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiApuestas.controller{
     [ApiController]
     [Route("/api/transaccion/")]
-    public class TransactionController : ControllerBase {
+    public class TransactionController : ControllerBase{
+        private readonly Command<CreateTransactionDto, int> createTransactionCommand;
 
-        private readonly CommandFacade _commandFacade;
-
-        public TransactionController(CommandFacade commandFacade)
+        public TransactionController(Command<CreateTransactionDto, int> createTransactionCommand)
         {
-            _commandFacade = commandFacade;
+            this.createTransactionCommand = createTransactionCommand;
         }
-        
+
         [HttpPost]
         [Route("/")]
-        public IActionResult create(CreateTransactionDto dto)
-        {
-            IActionResult result = Ok();
+        public IActionResult create(CreateTransactionDto dto) => Ok(createTransactionCommand.executeCommand(dto)) ?? Problem();
 
-            int transactionId = _commandFacade.createTransaction(dto.UserId, dto.Type, dto.Amount);
-
-            return result;
-        }
-        
     }
 }

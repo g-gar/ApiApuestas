@@ -1,39 +1,31 @@
 ﻿using core;
 using dto;
+using framework;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiApuestas.controller{
     [ApiController]
     [Route("/api/user/")]
-    public class UserController : ControllerBase {
-        
-        private readonly CommandFacade _commandFacade;
+    public class UserController : ControllerBase{
 
-        public UserController(CommandFacade commandFacade)
+        private readonly Command<CreateUserDto> createUserCommand;
+        private readonly Command<AuthenticateUserDto, bool> authenticateUserCommand;
+        
+        public UserController(Command<CreateUserDto> createUserCommand, Command<AuthenticateUserDto, bool> authenticateUserCommand)
         {
-            _commandFacade = commandFacade;
+            this.createUserCommand = createUserCommand;
+            this.authenticateUserCommand = authenticateUserCommand;
         }
 
         [HttpPost]
         [Route("/")]
-        public IActionResult create(CreateUserDto dto)
-        {
-            IActionResult result = Ok();
-
-            _commandFacade.register(dto.Username, dto.Dni, dto.Password);
-
-            return result;
-        }
+        public IActionResult create(CreateUserDto dto) => Ok(createUserCommand.executeCommand(dto)) ?? Problem();
 
         [HttpPost]
         [Route("/auth/")]
         public IActionResult authenticate(AuthenticateUserDto dto)
         {
-            IActionResult result = Ok();
-
-            bool valid = _commandFacade.authenticate(dto.Username, dto.Password);
-
-            return result;
+            return Ok(authenticateUserCommand.executeCommand(dto)) ?? Problem("invalid authentication details");
         }
     }
 }
