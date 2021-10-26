@@ -22,12 +22,10 @@ using repository;
 namespace rabbitmq{
     
 
-    internal class Program {
-        
-        private static IServiceProvider serviceProvider { get; set; }
+    public class Program {
         private static IConfiguration configuration { get; set; }
 
-        public static EntryPoint configureServices(string[] args)
+        public static IServiceCollection configureServices(string[] args)
         {
             configuration = new ConfigurationBuilder()
                 .SetBasePath($"{Directory.GetParent(AppContext.BaseDirectory).FullName}/configuration/")
@@ -42,12 +40,10 @@ namespace rabbitmq{
                     .AddConfiguration(configuration.GetSection("Logging"))
                     .AddGelf();
             });
-            
-            serviceProvider = new ServiceCollection()
+
+            return new ServiceCollection()
                 .AddSingleton(configuration)
                 .AddSingleton(configuration.GetSection("ConnectionFactory").Get<ConnectionFactory>())
-                // .AddSingleton<ILogger>(loggerFactory.CreateLogger<Program>())
-                .AddSingleton<ILogger>(LoggerFactory.Create(builder => builder.AddConfiguration(configuration.GetSection("Logging")).AddConsole()).CreateLogger<Program>())
                 .ConfigureRepositoryDependencyInjection()
                 .ConfigureCoreDependencyInjection()
                 .AddSingleton<IRabbitService, RabbitService<DefaultRabbitPublisher, DefaultRabbitConsumer>>()
@@ -56,18 +52,20 @@ namespace rabbitmq{
                 .AddTransient<RegisterEventMessageHandler>()
                 .AddTransient<TerminateEventMessageHandler>()
                 .AddTransient<CreateBetMessageHandler>()
-                .AddTransient<RegisterUserMessageHandler>()
-                .BuildServiceProvider();
-            return serviceProvider.GetService<EntryPoint>();
+                .AddTransient<RegisterUserMessageHandler>();
         }
 
         public static void Main(string[] args)
         {
-            configureServices(args)
+            ServiceProvider serviceProvider =  configureServices(args)
+                // .AddSingleton<ILogger>(loggerFactory.CreateLogger<Program>())
+                .AddSingleton<ILogger>(LoggerFactory.Create(builder => builder.AddConfiguration(configuration.GetSection("Logging")).AddConsole()).CreateLogger<Program>())
+                .BuildServiceProvider();
+            serviceProvider.GetService<EntryPoint>()?
                 // TODO: load from configuration/rabbitmq.json
                 .registerConsumer(new ConsumerConfiguration()
                 {
-                    exchange = "APexchange", 
+                    exchange = "main_exchanger", 
                     queue = "addPlayer", 
                     handler = serviceProvider.GetService<AddPlayerMessageHandler>(), 
                     routingKey = "event.addPlayer", 
@@ -76,7 +74,7 @@ namespace rabbitmq{
                 })
                 .registerConsumer(new ConsumerConfiguration()
                 {
-                    exchange = "REexchange", 
+                    exchange = "main_exchanger", 
                     queue = "registerEvent", 
                     handler = serviceProvider.GetService<RegisterEventMessageHandler>(), 
                     routingKey = "event.registerEvent", 
@@ -85,7 +83,7 @@ namespace rabbitmq{
                 })
                 .registerConsumer(new ConsumerConfiguration()
                 {
-                    exchange = "TEexchange", 
+                    exchange = "main_exchanger", 
                     queue = "terminateEvent", 
                     handler = serviceProvider.GetService<TerminateEventMessageHandler>(), 
                     routingKey = "event.terminateEvent", 
@@ -94,7 +92,7 @@ namespace rabbitmq{
                 })
                 .registerConsumer(new ConsumerConfiguration()
                 {
-                    exchange = "CBexchange", 
+                    exchange = "main_exchanger", 
                     queue = "createBet", 
                     handler = serviceProvider.GetService<CreateBetMessageHandler>(), 
                     routingKey = "event.createBet", 
@@ -103,7 +101,7 @@ namespace rabbitmq{
                 })
                 .registerConsumer(new ConsumerConfiguration()
                 {
-                    exchange = "RUexchange", 
+                    exchange = "main_exchanger", 
                     queue = "registerUser", 
                     handler = serviceProvider.GetService<RegisterUserMessageHandler>(), 
                     routingKey = "user.registerUser", 

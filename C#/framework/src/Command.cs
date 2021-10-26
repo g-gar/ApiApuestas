@@ -2,12 +2,12 @@
 using Microsoft.Extensions.Logging;
 
 namespace framework {
-    public abstract class Command<T, R> : ICommand<T, R> where T : Dto {
+    public abstract class Command<T, R> : ICommand<T, R> where T : class, Dto {
         protected readonly ILogger _logger;
         protected readonly LogLevel _logLevel;
         protected string _startTemplate;
         protected string _endTemplate;
-        protected R _result;
+        protected R? _result;
 
         protected Command(ILogger logger, LogLevel logLevel = LogLevel.Information, string startTemplate = "[{Typename}] started execution with args=[{Parameters}]", string endTemplate = "[{Typename}] terminated execution with args=[{Parameters}] and result=[{result}]")
         {
@@ -26,7 +26,7 @@ namespace framework {
 
         public R? executeCommand(T arg)
         {
-            _result = default(R);
+            _result = default(R?);
             beginExecute(_logLevel, _startTemplate, arg);
             if (checkPreconditions(arg))
             {

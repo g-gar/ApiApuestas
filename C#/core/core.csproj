@@ -22,7 +22,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\dto\dto.csproj" />
-      <ProjectReference Include="..\framework\framework.csproj" />
       <ProjectReference Include="..\Messaging.Core\Messaging.Core.csproj" />
     </ItemGroup>
 

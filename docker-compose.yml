@@ -1,17 +1,32 @@
 version: '3.9'
 
 services:
-  api:
+  rest:
     build:
-      context: ./DOCKER/rest/
-      dockerfile: Dockerfile
-    image: apuestas_api:latest
-    hostname: api0
-    container_name: api0
+      context: ./C#/
+      dockerfile: rest/rest.dockerfile
+    image: apuestas_api_rest:latest
+    hostname: rest0
+    container_name: rest0
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
     ports:
       - "5000:80"
+    expose:
+      - 5000
+    networks:
+      - br0
+  rabbitmq_handlers:
+    build:
+      context: ./C#/
+      dockerfile: rabbitmq/rabbitmq.dockerfile
+    image: apuestas_api_rabbitmq_handlers:latest
+    hostname: rabitmq_handlers
+    container_name: rabitmq_handlers
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    ports:
+      - "5672:5672"   # AMQP protocol port "5000:80"
     expose:
       - 5000
     networks:
@@ -120,7 +135,7 @@ services:
     #volumes:
       #- ./.docker/graylog/data/:/usr/share/graylog/data/
 
-  rabbitmq:
+  rabbitmq-server:
     image: rabbitmq:latest
     ports:
       - "5672:5672"   # AMQP protocol port

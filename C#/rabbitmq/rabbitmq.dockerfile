@@ -15,4 +15,7 @@ RUN dotnet publish "rabbitmq.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+##For added security, you can opt-out of the diagnostic pipeline. When you opt-out this allows the container to run as readonly.
+ENV COMPlus_EnableDiagnostics=0
 ENTRYPOINT ["dotnet", "rabbitmq.dll"]

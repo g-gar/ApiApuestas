@@ -10,7 +10,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\core\core.csproj" />
-      <ProjectReference Include="..\dto\dto.csproj" />
+      <ProjectReference Include="..\repository\repository.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="src" />
     </ItemGroup>
 
 </Project>

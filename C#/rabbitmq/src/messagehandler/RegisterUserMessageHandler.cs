@@ -11,9 +11,9 @@ namespace rabbitmq.messagehandler{
         
         private readonly Command<CreateUserDto> command;
 
-        public RegisterUserMessageHandler(ILogger logger, Command<CreateUserDto> commandFacade) : base(logger)
+        public RegisterUserMessageHandler(ILogger logger, Command<CreateUserDto> command) : base(logger)
         {
-            this.command = commandFacade;
+            this.command = command;
         }
 
         public override void execute(Payload payload) => this.command.executeCommand(JsonConvert.DeserializeObject<CreateUserDto>(payload.Body) ?? throw new InvalidOperationException());

@@ -4,7 +4,7 @@ using dto;
 using framework;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ApiApuestas.controller{
+namespace rest.controller{
     
     [ApiController]
     [Route("/api/evento/{event_id}/")]

@@ -26,14 +26,14 @@ namespace rabbitmq{
             {
                 while (true)
                 {
-                    Payload payload = new Payload()
-                    {
-                        Body = $"test {DateTime.Now}"
-                    };
-                    _logger.LogInformation($"Publishing payload[{payload}] to exchange=APExchange with direct routing and key=event.AddPlayer");
-                    _rabbitService.Publish(new List<Payload>(){payload}, "APexchange", "event.addPlayer", type: "direct", durable: true);
-                    _logger.LogInformation($"Published payload[{payload}] to exchange=APExchange with direct routing and key=event.AddPlayer");
-                    Console.WriteLine(payload.ToString());
+                    // Payload payload = new Payload()
+                    // {
+                    //     Body = $"test {DateTime.Now}"
+                    // };
+                    // _logger.LogInformation($"Publishing payload[{payload}] to exchange=APExchange with direct routing and key=event.AddPlayer");
+                    // _rabbitService.Publish(new List<Payload>(){payload}, "APexchange", "event.addPlayer", type: "direct", durable: true);
+                    // _logger.LogInformation($"Published payload[{payload}] to exchange=APExchange with direct routing and key=event.AddPlayer");
+                    // Console.WriteLine(payload.ToString());
                     Thread.Sleep(1000);
                 }
             }).Start();

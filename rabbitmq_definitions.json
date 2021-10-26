@@ -36,7 +36,7 @@
     "policies": [],
     "exchanges": [
         {
-          "name": "APexchange",
+          "name": "main_exchanger",
           "vhost": "/",
           "type": "direct",
           "durable": true,
@@ -47,7 +47,7 @@
     ],
     "bindings": [
         {
-          "source": "APexchange",
+          "source": "main_exchanger",
           "vhost": "/",
           "destination": "addPlayer",
           "destination_type": "queue",
@@ -55,13 +55,37 @@
           "arguments": {}
         },
         {
-          "source": "amq.direct",
+          "source": "main_exchanger",
           "vhost": "/",
-          "destination": "low_prio",
+          "destination": "registerEvent",
           "destination_type": "queue",
-          "routing_key": "low",
+          "routing_key": "event.registerEvent",
           "arguments": {}
-        }
+        },
+        {
+          "source": "main_exchanger",
+          "vhost": "/",
+          "destination": "terminateEvent",
+          "destination_type": "queue",
+          "routing_key": "event.terminateEvent",
+          "arguments": {}
+        },
+        {
+          "source": "main_exchanger",
+          "vhost": "/",
+          "destination": "createEvent",
+          "destination_type": "queue",
+          "routing_key": "event.createEvent",
+          "arguments": {}
+        },
+        {
+          "source": "main_exchanger",
+          "vhost": "/",
+          "destination": "registerUser",
+          "destination_type": "queue",
+          "routing_key": "user.registerUser",
+          "arguments": {}
+        },
     ],
     "queues": [
         {
@@ -72,11 +96,32 @@
             "arguments": {}
         },
         {
-            "name": "low_prio",
+            "name": "registerEvent",
             "vhost": "/",
             "durable": true,
             "auto_delete": false,
             "arguments": {}
-        }
+        },
+        {
+            "name": "terminateEvent",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "createBet",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "registerUser",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
     ]
 }

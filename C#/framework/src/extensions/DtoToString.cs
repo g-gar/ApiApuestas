@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace framework.extensions{
     public static class DtoToString{
-        public static string ToString(this Dto obj)
+        public static string ToStringImproved(this Dto obj)
         {
             string result = obj.GetType().FullName + ":";
             Type t = obj.GetType(); // Where obj is object whose properties you need.
