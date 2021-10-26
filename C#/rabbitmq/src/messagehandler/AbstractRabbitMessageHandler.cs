@@ -44,6 +44,7 @@ namespace rabbitmq.messagehandler {
         {
             Payloads.Add(payload);
             _logger.LogInformation("Received payload {0}", payload.ToString());
+            execute(payload);
         }
         
         public abstract void execute(Payload payload);

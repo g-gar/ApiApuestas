@@ -1,37 +1,6 @@
 version: '3.9'
 
 services:
-  rest:
-    build:
-      context: ./C#/
-      dockerfile: rest/rest.dockerfile
-    image: apuestas_api_rest:latest
-    hostname: rest0
-    container_name: rest0
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-    ports:
-      - "5000:80"
-    expose:
-      - 5000
-    networks:
-      - br0
-  rabbitmq_handlers:
-    build:
-      context: ./C#/
-      dockerfile: rabbitmq/rabbitmq.dockerfile
-    image: apuestas_api_rabbitmq_handlers:latest
-    hostname: rabitmq_handlers
-    container_name: rabitmq_handlers
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-    ports:
-      - "5672:5672"   # AMQP protocol port "5000:80"
-    expose:
-      - 5000
-    networks:
-      - br0
-
   sqlserver:
     image: mcr.microsoft.com/mssql/server:latest
     environment:
@@ -161,6 +130,38 @@ services:
       - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
     command: "/bin/bash -c \"rabbitmq-plugins enable rabbitmq_mqtt rabbitmq_management; rabbitmq-server\""
+
+  rest:
+    build:
+      context: ./C#/
+      dockerfile: rest/rest.dockerfile
+    image: apuestas_api_rest:latest
+    hostname: rest0
+    container_name: rest0
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    ports:
+      - "5000:80"
+    expose:
+      - 5000
+    networks:
+      - br0
+      
+  rabbitmq_handlers:
+    build:
+      context: ./C#/
+      dockerfile: rabbitmq/rabbitmq.dockerfile
+    image: apuestas_api_rabbitmq_handlers:latest
+    hostname: rabbitmq_handlers
+    container_name: rabbitmq_handlers
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    expose:
+      - 5000
+    networks:
+      - br0
+    depends_on:
+      - rabbitmq-server
 
 networks:
   br0:
