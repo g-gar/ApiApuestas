@@ -12,15 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="configuration\appsettings.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="configuration\rabbitmq.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\dto\dto.csproj" />
       <ProjectReference Include="..\Messaging.Core\Messaging.Core.csproj" />
     </ItemGroup>

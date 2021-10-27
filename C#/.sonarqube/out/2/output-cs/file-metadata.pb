@@ -1,0 +1,10 @@
+X
+OC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\src\AddPlayerDto.csutf-8_
+VC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\src\AuthenticateUserDto.csutf-8X
+OC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\src\CreateBetDto.csutf-8Z
+QC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\src\CreateEventDto.csutf-8`
+WC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\src\CreateTransactionDto.csutf-8Y
+PC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\src\CreateUserDto.csutf-8]
+TC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\src\TerminateEventDto.csutf-8†
+{C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\obj\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.csutf-8k
+`C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\obj\Debug\net5.0\dto.AssemblyInfo.csutf-8

@@ -1,6 +1,6 @@
 ﻿{
     "ConnectionFactory": {
-        "HostName" : "rabbitmq0",
+        "HostName" : "localhost",
         "Port": 5672,
         "UserName": "rabbit_user",
         "Password": "rabbit_user"

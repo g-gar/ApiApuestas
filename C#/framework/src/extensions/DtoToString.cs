@@ -10,7 +10,7 @@ namespace framework.extensions{
             PropertyInfo [] pi = t.GetProperties();
             foreach (PropertyInfo p in pi)
             {
-                result += String.Format("{attr}={value}", p.Name, p.GetValue(obj));
+                result += $"{p.Name}={p.GetValue(obj)}";
             }
 
             return result + "\n";

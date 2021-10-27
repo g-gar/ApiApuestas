@@ -1,0 +1,14 @@
+e
+\C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\command\AddPlayerCommand.csutf-8l
+cC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\command\AuthenticateUserCommand.csutf-8e
+\C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\command\CreateBetCommand.csutf-8g
+^C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\command\CreateEventCommand.csutf-8m
+dC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\command\CreateTransactionCommand.csutf-8h
+_C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\command\RegisterUserCommand.csutf-8j
+aC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\command\TerminateEventCommand.csutf-8W
+NC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\CoreModule.csutf-8h
+_C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\repository\IEventRepository.csutf-8n
+eC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\repository\ITransactionRepository.csutf-8g
+^C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\repository\IUserRepository.csutf-8‡
+|C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\obj\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.csutf-8m
+bC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\obj\Debug\net5.0\core.AssemblyInfo.csutf-8

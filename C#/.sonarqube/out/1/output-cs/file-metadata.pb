@@ -1,0 +1,17 @@
+v
+mC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\src\Interfaces\IRabbitConfiguration.csutf-8q
+hC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\src\Interfaces\IRabbitConsumer.csutf-8v
+mC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\src\Interfaces\IRabbitConsumerSetup.csutf-8w
+nC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\src\Interfaces\IRabbitMessageHandler.csutf-8r
+iC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\src\Interfaces\IRabbitPublisher.csutf-8w
+nC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\src\Interfaces\IRabbitPublisherSetup.csutf-8p
+gC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\src\Interfaces\IRabbitService.csutf-8s
+jC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\src\Models\DefaultRabbitConsumer.csutf-8t
+kC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\src\Models\DefaultRabbitPublisher.csutf-8j
+aC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\src\Models\GenericEvent.csutf-8e
+\C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\src\Models\Payload.csutf-8q
+hC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\src\Models\RabbitConfiguration.csutf-8r
+iC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\src\Models\RabbitMessageHandler.csutf-8m
+dC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\src\Services\RabbitService.csutf-8í
+ÜC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\obj\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.csutf-8Å
+vC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\Messaging.Core\obj\Debug\net5.0\Messaging.Core.AssemblyInfo.csutf-8

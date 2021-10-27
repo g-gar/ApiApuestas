@@ -1,4 +1,6 @@
+using System.IO;
 using ApiApuestas;
+using Gelf.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
@@ -15,10 +17,19 @@ namespace rest {
 
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
-            return Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
+            return Host.CreateDefaultBuilder(args)
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .ConfigureAppConfiguration((builderContext, config) =>
+                {
+                    config.AddJsonFile("Properties/appsettings.json", optional: false);
+                    config.AddJsonFile("Properties/appsettings.development.json", optional: false);
+                })
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder
+                        .ConfigureLogging(builder => builder.AddGelf())
+                        .UseStartup<Startup>();
+                });
         }
     }
 }

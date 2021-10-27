@@ -58,8 +58,7 @@ namespace rabbitmq{
         public static void Main(string[] args)
         {
             ServiceProvider serviceProvider =  configureServices(args)
-                // .AddSingleton<ILogger>(loggerFactory.CreateLogger<Program>())
-                .AddSingleton<ILogger>(LoggerFactory.Create(builder => builder.AddConfiguration(configuration.GetSection("Logging")).AddConsole()).CreateLogger<Program>())
+                .AddSingleton<ILogger>(LoggerFactory.Create(builder => builder.AddConfiguration(configuration.GetSection("Logging")).AddGelf()).CreateLogger<Program>())
                 .BuildServiceProvider();
             serviceProvider.GetService<EntryPoint>()?
                 // TODO: load from configuration/rabbitmq.json

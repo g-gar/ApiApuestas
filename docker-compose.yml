@@ -105,7 +105,7 @@ services:
       #- ./.docker/graylog/data/:/usr/share/graylog/data/
 
   rabbitmq-server:
-    image: rabbitmq:latest
+    image: rabbitmq:3.9.8
     ports:
       - "5672:5672"   # AMQP protocol port
       - "15672:15672" # HTTP management UI
@@ -116,9 +116,9 @@ services:
     networks:
       - br0
     volumes:
-      - ./.docker/rabbitmq/etc/:/etc/rabbitmq/
-      - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
-      - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
+      #- ./.docker/rabbitmq/etc/:/etc/rabbitmq/mnesia/
+      #- ./.docker/rabbitmq/data/:/var/lib/rabbitmq/mnesia/
+      #- ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
       - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
       - ./rabbitmq_definitions.json:/etc/rabbitmq/definitions.json
     environment:
@@ -156,8 +156,6 @@ services:
     container_name: rabbitmq_handlers
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-    expose:
-      - 5000
     networks:
       - br0
     depends_on:

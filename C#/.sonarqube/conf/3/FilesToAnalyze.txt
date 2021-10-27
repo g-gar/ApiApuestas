@@ -1,0 +1,11 @@
+﻿C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\command\AddPlayerCommand.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\command\AuthenticateUserCommand.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\command\CreateBetCommand.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\command\CreateEventCommand.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\command\CreateTransactionCommand.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\command\RegisterUserCommand.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\command\TerminateEventCommand.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\CoreModule.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\repository\IEventRepository.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\repository\ITransactionRepository.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\core\src\repository\IUserRepository.cs

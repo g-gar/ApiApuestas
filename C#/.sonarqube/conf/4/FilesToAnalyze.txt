@@ -1,0 +1,6 @@
+﻿C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\repository\src\DbConnectionPool.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\repository\src\EventRepository.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\repository\src\IDbConnectionPool.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\repository\src\RepositoryModule.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\repository\src\TransactionRepository.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\repository\src\UserRepository.cs
