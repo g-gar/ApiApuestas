@@ -1,0 +1,7 @@
+﻿C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\src\AddPlayerDto.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\src\AuthenticateUserDto.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\src\CreateBetDto.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\src\CreateEventDto.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\src\CreateTransactionDto.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\src\CreateUserDto.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\dto\src\TerminateEventDto.cs

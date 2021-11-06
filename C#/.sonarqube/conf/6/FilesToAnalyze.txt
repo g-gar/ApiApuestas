@@ -1,0 +1,14 @@
+﻿C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\src\controller\EventController.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\src\controller\TransactionController.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\src\controller\UserController.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\src\delegationhandler\LogRequestAndResponseHandler.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\src\Program.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\src\Starturp.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\obj\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\obj\Debug\net5.0\rest.AssemblyInfo.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\obj\Debug\net5.0\rest.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\Properties\appsettings.development.json
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\Properties\appsettings.json
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\.dockerignore
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\rest.dockerfile
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\Properties\launchSettings.json

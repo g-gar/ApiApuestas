@@ -1,0 +1,127 @@
+{
+    "users": [
+        {
+            "name": "rabbit_user",
+            "password": "rabbit_user",
+            "tags": ""
+        },
+        {
+            "name": "admin",
+            "password": "admin",
+            "tags": "administrator"
+        }
+    ],
+    "vhosts": [
+        {
+            "name": "/"
+        }
+    ],
+    "permissions": [
+        {
+            "user": "rabbit_user",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        },
+        {
+            "user": "admin",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }
+    ],
+    "parameters": [],
+    "policies": [],
+    "exchanges": [
+        {
+          "name": "main_exchanger",
+          "vhost": "/",
+          "type": "direct",
+          "durable": true,
+          "auto_delete": false,
+          "internal": false,
+          "arguments": {}
+        }
+    ],
+    "bindings": [
+        {
+          "source": "main_exchanger",
+          "vhost": "/",
+          "destination": "addPlayer",
+          "destination_type": "queue",
+          "routing_key": "event.addPlayer",
+          "arguments": {}
+        },
+        {
+          "source": "main_exchanger",
+          "vhost": "/",
+          "destination": "registerEvent",
+          "destination_type": "queue",
+          "routing_key": "event.registerEvent",
+          "arguments": {}
+        },
+        {
+          "source": "main_exchanger",
+          "vhost": "/",
+          "destination": "terminateEvent",
+          "destination_type": "queue",
+          "routing_key": "event.terminateEvent",
+          "arguments": {}
+        },
+        {
+          "source": "main_exchanger",
+          "vhost": "/",
+          "destination": "createBet",
+          "destination_type": "queue",
+          "routing_key": "event.createBet",
+          "arguments": {}
+        },
+        {
+          "source": "main_exchanger",
+          "vhost": "/",
+          "destination": "registerUser",
+          "destination_type": "queue",
+          "routing_key": "user.registerUser",
+          "arguments": {}
+        },
+    ],
+    "queues": [
+        {
+            "name": "addPlayer",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "registerEvent",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "terminateEvent",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "createBet",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "registerUser",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+    ]
+}

@@ -1,0 +1,10 @@
+g
+^C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\src\controller\EventController.csutf-8m
+dC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\src\controller\TransactionController.csutf-8f
+]C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\src\controller\UserController.csutf-8{
+rC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\src\delegationhandler\LogRequestAndResponseHandler.csutf-8T
+KC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\src\Program.csutf-8U
+LC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\src\Starturp.csutf-8‡
+|C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\obj\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.csutf-8m
+bC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\obj\Debug\net5.0\rest.AssemblyInfo.csutf-8€
+uC:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\rest\obj\Debug\net5.0\rest.MvcApplicationPartsAssemblyInfo.csutf-8

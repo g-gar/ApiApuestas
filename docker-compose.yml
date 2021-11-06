@@ -1,0 +1,166 @@
+version: '3.9'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:latest
+    environment:
+      # default username = sa
+      - SA_PASSWORD=${SA_PASSWORD}
+      - ACCEPT_EULA=Y
+    container_name: sqlserver0
+    hostname: sqlserver0
+    networks:
+      - br0
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./.docker/sqlserver/data/:/var/opt/mssql/data/
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    restart: always
+    environment:
+      - MONGO_INITDB_DATABASE=graylog
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    container_name: mongo0
+    hostname: mongo0
+    networks:
+      - br0
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  elasticsearch:
+    image: elasticsearch:7.14.2
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    container_name: es0
+    hostname: es0
+    networks:
+      - br0
+    environment:
+      - discovery.type=single-node
+      - http.host=0.0.0.0
+      - transport.host=0.0.0.0
+      - network.host=0.0.0.0
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD} # password for default user: elastic
+    volumes:
+      - ./.docker/elasticsearch/data/:/usr/share/elasticsearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 1g
+
+  kibana:
+    image: kibana:7.14.2
+    ports:
+      - "5601:5601"
+    container_name: kib0
+    hostname: kib0
+    environment:
+      ELASTICSEARCH_URL: http://es0:9200
+      ELASTICSEARCH_HOSTS: '["http://es0:9200"]'
+    networks:
+      - br0
+
+  graylog:
+    image: graylog/graylog:4.2
+    ports:
+      - "9000:9000" # Graylog web interface and REST API
+      #- "1514"      # Syslog TCP
+      #- "1514/udp"  # Syslog UDP
+      - "12201:12201"     # GELF TCP
+      - "12201:12201/udp" # GELF UDP
+    expose:
+      - "12201"
+    container_name: graylog0
+    hostname: graylog0
+    networks:
+      - br0
+    environment:
+      - GRAYLOG_HTTP_BIND_ADDRESS=0.0.0.0:9000
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://graylog0:9000/
+      - GRAYLOG_HTTP_PUBLISH_URI=http://graylog0:9000/
+      - GRAYLOG_WEB_ENDPOINT_URI=http://graylog0:9000/api
+      #- GRAYLOG_PASSWORD_SECRET=BLG3eUZQ*Tu6Z5nqR/V,cF(2UtYqWv:26GbejEycUVXYLTYmfLFtjzw+etZQ
+      #- GRAYLOG_TRANSPORT_SUBJECT_PREFIX=[graylog] # for email
+      #- GRAYLOG_ROOT_USERNAME=admin
+      #- GRAYLOG_ROOT_PASSWORD_SHA2=5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8 # Password=password
+      - GRAYLOG_MONGODB_URI=mongodb://${MONGO_INITDB_USER_USERNAME}:${MONGO_INITDB_USER_PASSWORD}@mongo0:27017/graylog
+      - ELASTICSEARCH_HOSTS=http://es0:9200
+      - GRAYLOG_ELASTICSEARCH_VERSION=7
+      - GRAYLOG_ELASTICSEARCH_DISCOVERY_ENABLED=true
+      - GRAYLOG_ELASTICSEARCH_DISCOVERY_DEFAULT_USER=${ELASTIC_USERNAME}
+      - GRAYLOG_ELASTICSEARCH_DISCOVERY_DEFAULT_PASSWORD=${ELASTIC_PASSWORD}
+    depends_on:
+      - mongo
+      - elasticsearch
+    #volumes:
+      #- ./.docker/graylog/data/:/usr/share/graylog/data/
+
+  rabbitmq-server:
+    image: rabbitmq:3.9.8
+    ports:
+      - "5672:5672"   # AMQP protocol port
+      - "15672:15672" # HTTP management UI
+      - "1883:1883"   # MQTT protocol port
+      - "15675:15675" # MQTT over WebSocket port
+    container_name: rabbitmq0
+    hostname: rabbitmq0
+    networks:
+      - br0
+    volumes:
+      #- ./.docker/rabbitmq/etc/:/etc/rabbitmq/mnesia/
+      #- ./.docker/rabbitmq/data/:/var/lib/rabbitmq/mnesia/
+      #- ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./rabbitmq_definitions.json:/etc/rabbitmq/definitions.json
+    environment:
+      #- RABBITMQ_DEFAULT_USER=myuser
+      #- RABBITMQ_DEFAULT_PASS=mypassword
+      #- RABBITMQ_DEFAULT_VHOST=phoenix
+      - RABBITMQ_NODE_IP_ADDRESS=0.0.0.0
+      - RABBITMQ_CONSOLE_LOG=new
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+    command: "/bin/bash -c \"rabbitmq-plugins enable rabbitmq_mqtt rabbitmq_management; rabbitmq-server\""
+
+  rest:
+    build:
+      context: ./C#/
+      dockerfile: rest/rest.dockerfile
+    image: apuestas_api_rest:latest
+    hostname: rest0
+    container_name: rest0
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    ports:
+      - "5000:80"
+    expose:
+      - 5000
+    networks:
+      - br0
+      
+  rabbitmq_handlers:
+    build:
+      context: ./C#/
+      dockerfile: rabbitmq/rabbitmq.dockerfile
+    image: apuestas_api_rabbitmq_handlers:latest
+    hostname: rabbitmq_handlers
+    container_name: rabbitmq_handlers
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - br0
+    depends_on:
+      - rabbitmq-server
+
+networks:
+  br0:
+    driver: bridge

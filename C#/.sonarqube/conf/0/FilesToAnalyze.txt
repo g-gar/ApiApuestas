@@ -1,0 +1,5 @@
+﻿C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\framework\src\Command.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\framework\src\Dto.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\framework\src\extensions\DtoToString.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\framework\src\ICommand.cs
+C:\Users\gabriel.garciafernan\Desktop\ApiApuestasgit\C#\framework\src\Void.cs

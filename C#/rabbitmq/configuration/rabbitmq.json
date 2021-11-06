@@ -1,0 +1,50 @@
+﻿{
+    "ConnectionFactory": {
+        "HostName" : "localhost",
+        "Port": 5672,
+        "UserName": "rabbit_user",
+        "Password": "rabbit_user"
+    },
+    "consumers": [
+        {
+            "exchange": "APexchange",
+            "queue": "addPlayer",
+            "routingKey": "event.addPlayer",
+            "type": "direct",
+            "durable": true,
+            "handler": "rabbitmq.messagehandler.AddPlayerMessageHandler"
+        },
+        {
+            "exchange": "REexchange",
+            "queue": "RegisterEvent",
+            "routingKey": "event.registerEvent",
+            "type": "direct",
+            "durable": true,
+            "handler": "rabbitmq.messagehandler.RegisterEventMessageHandler"
+        },
+        {
+            "exchange": "TEexchange",
+            "queue": "TerminateEvent",
+            "routingKey": "event.terminateEvent",
+            "type": "direct",
+            "durable": true,
+            "handler": "rabbitmq.messagehandler.TerminateEventMessageHandler"
+        },
+        {
+            "exchange": "CBexchange",
+            "queue": "CreateBet",
+            "routingKey": "event.createBet",
+            "type": "direct",
+            "durable": true,
+            "handler": "rabbitmq.messagehandler.CreateBetMessageHandler"
+        },
+        {
+            "exchange": "RUexchange",
+            "queue": "registerUser",
+            "routingKey": "event.registerUser",
+            "type": "direct",
+            "durable": true,
+            "handler": "rabbitmq.messagehandler.RegisterUserMessageHandler"
+        }
+    ]
+}
